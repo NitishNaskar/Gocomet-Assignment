@@ -1,4 +1,6 @@
 
 module.exports.home=function(req,res){
-    return res.render("index");
+    return res.render("index",{
+        output: "str"
+    });
 }

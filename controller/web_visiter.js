@@ -21,14 +21,22 @@ module.exports.webvisiter=function(req,res){
         links.forEach(str => {
             if(str.length>8 && str.substring(0,8)=="https://"){
                 const urlArray = str.split("?");
-                console.log(urlArray[0]);
-                wenCrawler.create({
+                
+                var urlDetails = new wenCrawler({
                     webside: urlArray[0],
                     status: "pending"
-                })
+                });
+
+                urlDetails.save((err, doc) =>{
+                    if(err){
+                        console.log('Alrady have in side the database');
+                    }else{
+                        console.log("New url added -- > ",urlArray[0]);
+                    }
+              });
             }
         });
+        return res.redirect("/");
     });
 
-    return res.redirect("/");
 }

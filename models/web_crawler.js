@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const webCrawlerSchema = new mongoose.Schema({
     webside: {
         type: String,
+        unique: true,
         required: true
     },
     status: {
